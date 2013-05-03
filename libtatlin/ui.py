@@ -269,14 +269,16 @@ class StlPanel(gtk.VBox):
         view_buttons = ViewButtons(self.app)
 
         self.check_ortho    = gtk.CheckButton('Orthographic projection')
+        self.check_xray     = gtk.CheckButton('X-ray mode')
         self.btn_reset_view = gtk.Button('Reset view')
 
-        table_display = gtk.Table(rows=2, columns=1)
+        table_display = gtk.Table(rows=4, columns=1)
         table_display.set_border_width(5)
         table_display.set_row_spacings(5)
         table_display.attach(view_buttons,        0, 1, 0, 1, yoptions=0)
         table_display.attach(self.check_ortho,    0, 1, 1, 2, yoptions=0)
-        table_display.attach(self.btn_reset_view, 0, 1, 2, 3, yoptions=0)
+        table_display.attach(self.check_xray,     0, 1, 2, 3, yoptions=0)
+        table_display.attach(self.btn_reset_view, 0, 1, 3, 4, yoptions=0)
 
         frame_display = gtk.Frame('Display')
         frame_display.set_border_width(5)
@@ -333,6 +335,7 @@ class StlPanel(gtk.VBox):
 
         self.btn_reset_view.connect('clicked', self.app.on_reset_view)
         self.check_ortho.connect('toggled', self.app.on_set_ortho)
+        self.check_xray.connect('toggled', self.app.on_xray_toggled)
 
         self._handlers_connected = True
 

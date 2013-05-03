@@ -374,6 +374,10 @@ class App(object):
         self.scene.mode_ortho = widget.get_active()
         self.scene.invalidate()
 
+    def on_xray_toggled(self, widget):
+        self.scene.show_in_xray_mode(widget.get_active())
+        self.scene.invalidate()
+
     def on_view_front(self, widget):
         self.scene.rotate_view(0, 0)
 

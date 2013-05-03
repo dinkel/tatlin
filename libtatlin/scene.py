@@ -317,6 +317,10 @@ class Scene(GLScene, GLSceneButton, GLSceneButtonMotion):
         self.model.arrows_enabled = show
         self.model.init()
 
+    def show_in_xray_mode(self, show):
+        self.model.xray_enabled = show
+        self.model.init()
+
     @property
     def model_modified(self):
         """

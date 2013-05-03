@@ -357,6 +357,7 @@ class StlModel(Model):
         self.mat_shininess  = 50.0
         self.light_position = (20.0, 20.0, 20.0)
 
+        self.xray_enabled = False
         self.initialized = False
 
         t_end = time.time()
@@ -438,7 +439,17 @@ class StlModel(Model):
         glEnableClientState(GL_VERTEX_ARRAY)
         glEnableClientState(GL_NORMAL_ARRAY)
 
+        if self.xray_enabled:
+            glColor4f(1.0, 1.0, 1.0, 0.5)
+
+            glDisable(GL_DEPTH_TEST)
+            glDisable(GL_CULL_FACE)
+
         glDrawArrays(GL_TRIANGLES, 0, len(self.vertices))
+
+        if self.xray_enabled:
+            glEnable(GL_CULL_FACE)
+            glEnable(GL_DEPTH_TEST)
 
         glDisableClientState(GL_NORMAL_ARRAY)
         glDisableClientState(GL_VERTEX_ARRAY)
